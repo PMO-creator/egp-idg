@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Escritório de Projetos · IDG</title>
+<style>
+:root{
+  --bg:#1E293B;
+  --accent:#3B82F6;
+  --card:#FFFFFF;
+  --surface:#F1F5F9;
+  --border:#E2E8F0;
+  --text:#1E293B;
+  --muted:#64748B;
+  --radius:10px;
+  --gap:32px;
+  --badge-docs:#2563EB;
+  --badge-slides:#EA580C;
+  --badge-sheets:#16A34A;
+  --badge-form:#7C3AED;
+  --badge-github:#334155;
+  --badge-pendente:#94A3B8;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  background:var(--surface);
+  color:var(--text);
+  line-height:1.5;
+}
+.wrap{max-width:1280px;margin:0 auto;padding:0 24px}
+
+/* ── Header ── */
+header{
+  background:var(--bg);
+  color:#fff;
+  padding:20px 0;
+  position:sticky;
+  top:0;
+  z-index:100;
+  box-shadow:0 1px 3px rgba(0,0,0,.2);
+}
+.header-in{display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+.logo{flex:0 0 auto}
+.logo svg{height:44px;width:auto;display:block}
+.logo svg .st0{fill:#FFFFFF}
+.header-txt{flex:1 1 auto;min-width:200px}
+.header-txt h1{font-size:20px;font-weight:600;letter-spacing:-.01em}
+.header-txt p{font-size:13px;color:#94A3B8;margin-top:2px}
+.nav{display:flex;gap:8px;flex:0 0 auto}
+.nav a{
+  color:#0F172A;
+  background:#DBEAFE;
+  text-decoration:none;
+  font-size:13px;
+  padding:6px 14px;
+  border-radius:999px;
+  border:1px solid transparent;
+  transition:.15s;
+}
+.nav a:hover{background:#BFDBFE}
+.nav a.ativo{background:var(--accent);color:#fff;font-weight:600}
+.nav a.ativo:hover{background:#2563EB}
+.nav a.nav-drive{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600}
+.nav a.nav-drive:hover{background:#2563EB;border-color:#2563EB}
+
+/* ── Seções ── */
+.secao{padding:48px 0 8px}
+.secao-head{display:flex;align-items:baseline;gap:12px;margin-bottom:8px}
+.secao-num{
+  font-size:13px;font-weight:700;color:#fff;background:var(--bg);
+  width:26px;height:26px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;flex:0 0 auto;
+}
+.secao h2{font-size:24px;font-weight:650;letter-spacing:-.02em}
+.secao-sub{color:var(--muted);font-size:14px;margin:0 0 24px 38px}
+.secao-icone{font-size:18px;width:26px;text-align:center;flex:0 0 auto}
+
+/* ── Divisor de fluxo ── */
+.flow-divider{display:flex;align-items:center;gap:16px;margin-top:8px}
+.flow-divider-line{flex:1 1 auto;height:1px;background:var(--border)}
+.flow-divider-msg{
+  display:flex;align-items:center;gap:10px;flex:0 1 auto;text-align:center;
+  font-size:16px;font-weight:600;color:var(--muted);
+}
+.flow-divider-arrow{
+  display:flex;align-items:center;justify-content:center;flex:0 0 auto;
+  width:40px;height:40px;border-radius:50%;
+  background:var(--accent);color:#fff;font-size:20px;
+  animation:flowBounce 1.6s ease-in-out infinite;
+}
+@keyframes flowBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(3px)}}
+
+/* ── Colunas ── */
+.colunas{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap);align-items:start}
+.coluna-head{
+  font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;
+  color:var(--muted);padding-bottom:10px;margin-bottom:16px;
+  border-bottom:2px solid var(--border);
+}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}
+.coluna .grid{grid-template-columns:1fr}
+#priorizacao .grid,#execucao .grid{grid-template-columns:repeat(3,1fr)}
+
+/* ── Card ── */
+.card{
+  position:relative;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:20px;
+  display:flex;flex-direction:column;gap:8px;
+  text-decoration:none;color:inherit;
+  transition:.15s;
+  min-height:150px;
+}
+.card:hover{
+  border-color:var(--accent);
+  box-shadow:0 4px 12px rgba(30,41,59,.10);
+  transform:translateY(-2px);
+}
+.card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.card-icone{font-size:26px;line-height:1}
+.badge{
+  font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;
+  color:#fff;padding:3px 9px;border-radius:999px;white-space:nowrap;
+}
+.badge.docs{background:var(--badge-docs)}
+.badge.slides{background:var(--badge-slides)}
+.badge.sheets{background:var(--badge-sheets)}
+.badge.form{background:var(--badge-form)}
+.badge.github{background:var(--badge-github)}
+.badge.pendente{background:var(--badge-pendente)}
+.card-nome{font-size:15px;font-weight:600;letter-spacing:-.01em}
+.card-desc{font-size:13px;color:var(--muted);flex:1 1 auto}
+.card-acao{
+  font-size:13px;font-weight:600;color:var(--accent);
+  display:flex;align-items:center;gap:5px;margin-top:4px;
+}
+.card:hover .card-acao{gap:9px}
+.card-nota{font-size:11px;color:var(--muted);font-style:italic}
+
+/* ── Fluxo numerado (etapas 1–7) ── */
+.flow-badge{
+  position:absolute;top:-14px;left:-14px;z-index:2;
+  width:28px;height:28px;border-radius:50%;
+  background:var(--accent);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;font-weight:700;
+  box-shadow:0 0 0 3px var(--surface);
+}
+.card.pendente .flow-badge{background:var(--badge-pendente)}
+@media(min-width:901px){
+  .grid .card[data-passo] + .card[data-passo]:not(:nth-child(3n+1))::before{
+    content:'';position:absolute;z-index:1;
+    top:-1px;left:-20px;width:20px;height:2px;
+    background:var(--accent);
+  }
+  .grid .card[data-passo] + .card.pendente[data-passo]:not(:nth-child(3n+1))::before{
+    background:var(--badge-pendente);
+  }
+}
+
+/* ── Card pendente ── */
+.card.pendente{background:var(--surface);border-style:dashed;cursor:default}
+.card.pendente:hover{border-color:var(--border);box-shadow:none;transform:none}
+.card.pendente .card-nome,.card.pendente .card-desc{color:var(--muted)}
+.card.pendente .card-icone{opacity:.5}
+.card.pendente .card-acao{color:var(--muted)}
+
+/* ── Rodapé ── */
+footer{margin-top:56px;padding:28px 0 40px;border-top:1px solid var(--border)}
+.footer-in{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+footer a{color:var(--accent);text-decoration:none;font-size:14px;font-weight:500}
+footer a:hover{text-decoration:underline}
+footer small{color:var(--muted);font-size:12px}
+
+/* ── Toast ── */
+#toast{
+  position:fixed;left:50%;bottom:32px;transform:translate(-50%,16px);
+  background:var(--bg);color:#fff;font-size:14px;
+  padding:13px 22px;border-radius:var(--radius);
+  box-shadow:0 8px 24px rgba(30,41,59,.28);
+  opacity:0;pointer-events:none;transition:.2s;z-index:200;
+}
+#toast.on{opacity:1;transform:translate(-50%,0)}
+
+/* ── Responsivo ── */
+@media(max-width:900px){
+  .colunas{grid-template-columns:1fr;gap:36px}
+  #priorizacao .grid,#execucao .grid{grid-template-columns:1fr}
+  .flow-divider-msg{font-size:15px}
+  .secao{padding:36px 0 8px}
+}
+@media(max-width:600px){
+  .wrap{padding:0 16px}
+  .header-in{gap:14px}
+  .logo svg{height:34px}
+  .header-txt h1{font-size:17px}
+  .header-txt p{display:none}
+  .nav{width:100%}
+  .nav a{flex:1;text-align:center}
+  .secao h2{font-size:20px}
+  .secao-sub{margin-left:0}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap header-in">
+    <div class="logo"><svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 956.3 329.2">
+  
+  <defs>
+    <style>
+      .st0 {
+        fill: #1d1d1b;
+      }
+    </style>
+  </defs>
+  <g>
+    <path class="st0" d="M530.3,84.8h5.1v33.8h-5.1v-33.8Z"/>
+    <path class="st0" d="M543.8,84.8h4.8l15.3,24h0v-24h5.1v33.8h-4.8l-15.3-24h0v24h-5.1v-33.8Z"/>
+    <path class="st0" d="M587.4,113.7c4.4,0,6.6-1.6,6.7-4.7,0-2.5-1.4-4-4.4-4.5-1.4-.2-2.8-.4-4.5-.6-2.9-.5-5.1-1.5-6.6-3.2-1.6-1.7-2.3-3.8-2.3-6.3s1-5.3,2.9-7.1c1.9-1.8,4.6-2.7,8.1-2.7,4.2,0,7.9,1.3,11,3.5l-2.8,4.2c-2.5-1.7-5.3-2.5-8.4-2.6-1.6,0-2.9.4-3.9,1.2-1.1.8-1.7,2-1.7,3.7,0,1,.4,1.9,1.1,2.6.8.8,2,1.4,3.6,1.7.9.2,2.2.3,3.8.5,3.2.4,5.5,1.6,7,3.4,1.5,1.8,2.2,3.9,2.2,6.3-.2,6.5-4.1,9.7-11.9,9.8-5,0-9.3-1.5-12.9-4.6l3.4-3.8c2.7,2.2,5.9,3.3,9.6,3.4Z"/>
+    <path class="st0" d="M611.5,89.3h-9.2v-4.6h23.6v4.6h-9.2v29.2h-5.1v-29.2Z"/>
+    <path class="st0" d="M630.7,84.8h5.1v33.8h-5.1v-33.8Z"/>
+    <path class="st0" d="M649.8,89.3h-9.2v-4.6h23.6v4.6h-9.2v29.2h-5.1v-29.2Z"/>
+    <path class="st0" d="M668.4,84.8h5.1v21.8c0,2.3.7,4.1,2,5.3,1.3,1.3,2.9,1.9,4.9,1.9s3.6-.6,4.9-1.9c1.3-1.2,1.9-3,1.9-5.3v-21.8h5.1v22.3c0,3.5-1.2,6.4-3.4,8.5-2.3,2.1-5.1,3.2-8.5,3.3-3.4,0-6.2-1.1-8.5-3.3-2.3-2.1-3.5-4.9-3.5-8.5v-22.3Z"/>
+    <path class="st0" d="M705.8,89.3h-9.2v-4.6h23.6v4.6h-9.2v29.2h-5.1v-29.2Z"/>
+    <path class="st0" d="M723,101.7c0-3.9.1-6.5.3-7.9.2-1.3.6-2.4,1.1-3.2.8-1.6,2.1-2.9,3.9-4.2,1.8-1.2,4-1.9,6.7-1.9,2.7,0,4.9.7,6.7,1.9,1.8,1.2,3.1,2.6,3.8,4.2.6.8,1,1.9,1.2,3.2.2,1.3.3,4,.3,7.9s0,6.5-.3,7.8c-.2,1.4-.6,2.4-1.2,3.3-.8,1.6-2.1,2.9-3.8,4.1-1.8,1.2-4,1.9-6.7,1.9-2.7,0-4.9-.7-6.7-1.9-1.8-1.2-3.1-2.6-3.9-4.1-.2-.5-.5-1-.7-1.5-.2-.5-.3-1.1-.5-1.8-.2-1.4-.3-4-.3-7.8ZM728.1,101.7c0,3.3.1,5.6.4,6.7.2,1.2.7,2.1,1.3,2.8.5.7,1.3,1.3,2.1,1.7.9.5,1.9.8,3.1.8s2.3-.3,3.2-.8c.8-.4,1.5-1,2-1.7.7-.7,1.1-1.7,1.4-2.8.2-1.2.3-3.4.3-6.7s-.1-5.6-.3-6.8c-.2-1.1-.7-2.1-1.4-2.8-.5-.7-1.2-1.3-2-1.7-.9-.4-2-.7-3.2-.7-1.2,0-2.2.3-3.1.7-.9.5-1.6,1-2.1,1.7-.7.7-1.1,1.7-1.3,2.8-.2,1.2-.4,3.5-.4,6.8Z"/>
+    <path class="st0" d="M766.8,84.8h11.8c4.6,0,8,1.9,10.3,5.7.8,1.3,1.3,2.6,1.5,4,.2,1.4.3,3.8.3,7.2s-.1,6.2-.4,7.6c-.1.7-.3,1.4-.6,1.9-.3.6-.6,1.1-.9,1.7-1,1.6-2.4,2.9-4.1,3.9-1.7,1.1-3.9,1.7-6.4,1.7h-11.5v-33.8ZM771.9,113.7h6.1c2.9,0,5-1,6.3-2.9.6-.7.9-1.6,1.1-2.8.1-1.1.2-3.2.2-6.2s0-5-.2-6.3c-.2-1.3-.6-2.3-1.3-3.1-1.4-2-3.4-2.9-6-2.8h-6.1v24.1Z"/>
+    <path class="st0" d="M797.9,84.8h21.6v4.8h-16.4v9.6h14v4.5h-14v9.9h16.4v4.8h-21.6v-33.8Z"/>
+    <path class="st0" d="M530.3,140.8h11.8c4.6,0,8,1.9,10.3,5.7.8,1.3,1.3,2.6,1.5,4,.2,1.4.3,3.8.3,7.2s-.1,6.2-.4,7.6c-.1.7-.3,1.4-.6,1.9-.3.6-.6,1.1-.9,1.7-1,1.6-2.4,2.9-4.1,3.9-1.7,1.1-3.9,1.7-6.4,1.7h-11.5v-33.8ZM535.5,169.8h6.1c2.9,0,5-1,6.3-2.9.6-.7.9-1.6,1.1-2.8.1-1.1.2-3.2.2-6.2s0-5-.2-6.3c-.2-1.3-.6-2.3-1.3-3.1-1.4-2-3.4-2.9-6-2.8h-6.1v24.1Z"/>
+    <path class="st0" d="M561.4,140.8h21.6v4.8h-16.4v9.6h14v4.5h-14v9.9h16.4v4.8h-21.6v-33.8Z"/>
+    <path class="st0" d="M599,169.8c4.4,0,6.6-1.6,6.7-4.7,0-2.5-1.4-4-4.4-4.5-1.4-.2-2.8-.4-4.5-.6-2.9-.5-5.1-1.5-6.6-3.2-1.6-1.7-2.3-3.8-2.3-6.3s1-5.3,2.9-7.1c1.9-1.8,4.6-2.7,8.1-2.7,4.2,0,7.9,1.3,11,3.5l-2.8,4.2c-2.5-1.7-5.3-2.5-8.4-2.6-1.6,0-2.9.4-3.9,1.2-1.1.8-1.7,2-1.7,3.7,0,1,.4,1.9,1.1,2.6.8.8,2,1.4,3.6,1.7.9.2,2.2.3,3.8.5,3.2.4,5.5,1.6,7,3.4,1.5,1.8,2.2,3.9,2.2,6.3-.2,6.5-4.1,9.7-11.9,9.8-5,0-9.3-1.5-12.9-4.6l3.4-3.8c2.7,2.2,5.9,3.3,9.6,3.4Z"/>
+    <path class="st0" d="M617.4,140.8h21.6v4.8h-16.4v9.6h14v4.5h-14v9.9h16.4v4.8h-21.6v-33.8Z"/>
+    <path class="st0" d="M644.9,140.8h4.8l15.3,24h0v-24h5.1v33.8h-4.8l-15.3-24h0v24h-5.1v-33.8Z"/>
+    <path class="st0" d="M675.1,140.8h5.4l7.7,25.7h0l7.7-25.7h5.4l-11.2,33.8h-4l-11.1-33.8Z"/>
+    <path class="st0" d="M704.1,157.7c0-3.9.1-6.5.3-7.9.2-1.3.6-2.4,1.1-3.2.8-1.6,2.1-2.9,3.9-4.2,1.8-1.2,4-1.9,6.7-1.9,2.7,0,4.9.7,6.7,1.9,1.8,1.2,3.1,2.6,3.8,4.2.6.8,1,1.9,1.2,3.2.2,1.3.3,4,.3,7.9s0,6.5-.3,7.8c-.2,1.4-.6,2.4-1.2,3.3-.8,1.6-2.1,2.9-3.8,4.1-1.8,1.2-4,1.9-6.7,1.9-2.7,0-4.9-.7-6.7-1.9-1.8-1.2-3.1-2.6-3.9-4.1-.2-.5-.5-1-.7-1.5-.2-.5-.3-1.1-.5-1.8-.2-1.4-.3-4-.3-7.8ZM709.3,157.7c0,3.3.1,5.6.4,6.7.2,1.2.7,2.1,1.3,2.8.5.7,1.3,1.3,2.1,1.7.9.5,1.9.8,3.1.8s2.3-.3,3.2-.8c.8-.4,1.5-1,2-1.7.7-.7,1.1-1.7,1.4-2.8.2-1.2.3-3.4.3-6.7s-.1-5.6-.3-6.8c-.2-1.1-.7-2.1-1.4-2.8-.5-.7-1.2-1.3-2-1.7-.9-.4-2-.7-3.2-.7-1.2,0-2.2.3-3.1.7-.9.5-1.6,1-2.1,1.7-.7.7-1.1,1.7-1.3,2.8-.2,1.2-.4,3.5-.4,6.8Z"/>
+    <path class="st0" d="M735.4,140.8h5.1v28.9h16.4v4.8h-21.6v-33.8Z"/>
+    <path class="st0" d="M754.2,140.8h5.4l7.7,25.7h0l7.7-25.7h5.4l-11.2,33.8h-4l-11.1-33.8Z"/>
+    <path class="st0" d="M785.3,140.8h5.1v33.8h-5.1v-33.8Z"/>
+    <path class="st0" d="M798.7,140.8h4.8l9.7,22,9.5-22h4.8v33.8h-5.1v-21.1h-.1l-7.1,16.2h-4.3l-7.1-16.2h0v21.1h-5.1v-33.8Z"/>
+    <path class="st0" d="M835.8,140.8h21.6v4.8h-16.4v9.6h14v4.5h-14v9.9h16.4v4.8h-21.6v-33.8Z"/>
+    <path class="st0" d="M863.4,140.8h4.8l15.3,24h0v-24h5.1v33.8h-4.8l-15.3-24h0v24h-5.1v-33.8Z"/>
+    <path class="st0" d="M902.8,145.4h-9.2v-4.6h23.6v4.6h-9.2v29.2h-5.1v-29.2Z"/>
+    <path class="st0" d="M919.9,157.7c0-3.9.1-6.5.3-7.9.2-1.3.6-2.4,1.1-3.2.8-1.6,2.1-2.9,3.9-4.2,1.8-1.2,4-1.9,6.7-1.9,2.7,0,4.9.7,6.7,1.9,1.8,1.2,3.1,2.6,3.8,4.2.6.8,1,1.9,1.2,3.2.2,1.3.3,4,.3,7.9s0,6.5-.3,7.8c-.2,1.4-.6,2.4-1.2,3.3-.8,1.6-2.1,2.9-3.8,4.1-1.8,1.2-4,1.9-6.7,1.9-2.7,0-4.9-.7-6.7-1.9-1.8-1.2-3.1-2.6-3.9-4.1-.2-.5-.5-1-.7-1.5-.2-.5-.3-1.1-.5-1.8-.2-1.4-.3-4-.3-7.8ZM925.1,157.7c0,3.3.1,5.6.4,6.7.2,1.2.7,2.1,1.3,2.8.5.7,1.3,1.3,2.1,1.7.9.5,1.9.8,3.1.8s2.3-.3,3.2-.8c.8-.4,1.5-1,2-1.7.7-.7,1.1-1.7,1.4-2.8.2-1.2.3-3.4.3-6.7s-.1-5.6-.3-6.8c-.2-1.1-.7-2.1-1.4-2.8-.5-.7-1.2-1.3-2-1.7-.9-.4-2-.7-3.2-.7-1.2,0-2.2.3-3.1.7-.9.5-1.6,1-2.1,1.7-.7.7-1.1,1.7-1.3,2.8-.2,1.2-.4,3.5-.4,6.8Z"/>
+    <path class="st0" d="M530.3,196.9h21.6v4.8h-16.4v9.6h14v4.5h-14v9.9h16.4v4.8h-21.6v-33.8Z"/>
+    <path class="st0" d="M581.4,212.1h12v6.9c0,3.4-1.2,6.2-3.5,8.5-2.3,2.3-5.1,3.4-8.6,3.5-2.7,0-4.9-.7-6.7-1.9-1.8-1.2-3.1-2.6-3.9-4.1-.2-.5-.5-1-.7-1.5-.2-.5-.3-1.1-.5-1.8-.2-1.4-.3-4-.3-7.8s.1-6.5.3-7.9c.2-1.3.6-2.4,1.1-3.2.8-1.6,2.1-2.9,3.9-4.2,1.8-1.2,4-1.9,6.7-1.9,3.3,0,5.9,1,8,2.9,2.1,1.9,3.4,4.3,3.9,7.1h-5.4c-.4-1.4-1.2-2.5-2.3-3.5-1.1-.9-2.5-1.4-4.2-1.4-1.2,0-2.2.3-3.1.7-.9.5-1.6,1-2.1,1.7-.7.7-1.1,1.7-1.3,2.8-.2,1.2-.4,3.5-.4,6.8s.1,5.6.4,6.7c.2,1.2.7,2.1,1.3,2.8.5.7,1.3,1.3,2.1,1.7.9.5,1.9.8,3.1.8,2,0,3.6-.7,4.9-2,1.3-1.3,2-3,2-5.1v-1.8h-6.9v-4.8Z"/>
+    <path class="st0" d="M600.6,196.9h21.6v4.8h-16.4v9.6h14v4.5h-14v9.9h16.4v4.8h-21.6v-33.8Z"/>
+    <path class="st0" d="M638.2,225.8c4.4,0,6.6-1.6,6.7-4.7,0-2.5-1.4-4-4.4-4.5-1.4-.2-2.8-.4-4.5-.6-2.9-.5-5.1-1.5-6.6-3.2-1.6-1.7-2.3-3.8-2.3-6.3s1-5.3,2.9-7.1c1.9-1.8,4.6-2.7,8.1-2.7,4.2,0,7.9,1.3,11,3.5l-2.8,4.2c-2.5-1.7-5.3-2.5-8.4-2.6-1.6,0-2.9.4-3.9,1.2-1.1.8-1.7,2-1.7,3.7,0,1,.4,1.9,1.1,2.6.8.8,2,1.4,3.6,1.7.9.2,2.2.3,3.8.5,3.2.4,5.5,1.6,7,3.4,1.5,1.8,2.2,3.9,2.2,6.3-.2,6.5-4.1,9.7-11.9,9.8-5,0-9.3-1.5-12.9-4.6l3.4-3.8c2.7,2.2,5.9,3.3,9.6,3.4Z"/>
+    <path class="st0" d="M662.3,201.5h-9.2v-4.6h23.6v4.6h-9.2v29.2h-5.1v-29.2Z"/>
+    <path class="st0" d="M698.8,223.1h-12.8l-2.6,7.6h-5.4l12.3-33.8h4.3l12.3,33.8h-5.4l-2.6-7.6ZM684.1,194.8c.3-1.7.9-3,1.8-4,.9-1,2.1-1.5,3.6-1.5s1.2,0,1.7.2c.6.2,1.1.4,1.7.6.6.3,1.1.5,1.6.6.5.2.9.3,1.4.3.5,0,.9-.1,1.4-.4.4-.3.7-.8.8-1.7h2.8c-.2,1.5-.7,2.8-1.6,3.8-.8,1.1-2.1,1.7-3.7,1.7-.6,0-1.2-.1-1.8-.3-.6-.2-1.2-.4-1.8-.6-1.2-.5-2.3-.8-3.3-.9-.3,0-.7.1-1.2.4-.5.3-.8.9-.8,1.7h-2.8ZM697.3,218.6l-4.9-14.8h0l-4.9,14.8h9.9Z"/>
+    <path class="st0" d="M710.4,213.8c0-3.9.1-6.5.3-7.9.2-1.3.6-2.4,1.1-3.2.8-1.6,2.1-2.9,3.9-4.2,1.8-1.2,4-1.9,6.7-1.9,2.7,0,4.9.7,6.7,1.9,1.8,1.2,3.1,2.6,3.8,4.2.6.8,1,1.9,1.2,3.2.2,1.3.3,4,.3,7.9s0,6.5-.3,7.8c-.2,1.4-.6,2.4-1.2,3.3-.8,1.6-2.1,2.9-3.8,4.1-1.8,1.2-4,1.9-6.7,1.9-2.7,0-4.9-.7-6.7-1.9-1.8-1.2-3.1-2.6-3.9-4.1-.2-.5-.5-1-.7-1.5-.2-.5-.3-1.1-.5-1.8-.2-1.4-.3-4-.3-7.8ZM715.6,213.8c0,3.3.1,5.6.4,6.7.2,1.2.7,2.1,1.3,2.8.5.7,1.3,1.3,2.1,1.7.9.5,1.9.8,3.1.8s2.3-.3,3.2-.8c.8-.4,1.5-1,2-1.7.7-.7,1.1-1.7,1.4-2.8.2-1.2.3-3.4.3-6.7s-.1-5.6-.3-6.8c-.2-1.1-.7-2.1-1.4-2.8-.5-.7-1.2-1.3-2-1.7-.9-.4-2-.7-3.2-.7-1.2,0-2.2.3-3.1.7-.9.5-1.6,1-2.1,1.7-.7.7-1.1,1.7-1.3,2.8-.2,1.2-.4,3.5-.4,6.8Z"/>
+  </g>
+  <g>
+    <path class="st0" d="M90.7,83.5c20.3,0,36.7-16.4,36.7-36.7S111,10.2,90.7,10.2s-36.7,16.4-36.7,36.7,16.4,36.7,36.7,36.7Z"/>
+    <path class="st0" d="M472.2,234.8c-5.1-7.4-12.2-13.1-21.5-17-9.3-3.9-20.4-5.8-33.3-5.8h-35.6c-6,0-10.7-1.1-13.9-3.2-3.2-2.2-4.9-4.9-4.9-8.1s.8-4.5,2.4-6.4c7.1,1.7,14.8,2.5,23.2,2.5,14.9,0,27.7-2.3,38.5-7,10.8-4.6,19.1-11.4,25.1-20.4,5.9-9,8.9-19.9,8.9-32.8s-3-23.7-9.1-32.2c-3.4-4.8-7.6-8.9-12.4-12.4.9-10.4,7-11.8,13.2-11.8s14.2,2.3,20.1,5.2v-38.2c-6.2-2.3-13.3-3.6-21.7-3.6-19.1,0-32,13.6-32,35.9v3c-8.6-2.4-18.1-3.6-28.5-3.6-15.8,0-28.9,2.8-39.3,8.3-10.5,5.5-18.3,12.8-23.5,22-5.2,9.2-7.8,19.2-7.8,29.9s2.9,22.4,8.6,31.1c4.5,6.8,10.5,12.4,17.9,16.7-7.8,1.5-14.1,4.1-18.9,7.6-3.2,2.4-5.8,5.2-7.7,8.4h-15.6V12.4h-76.1v28.8h22.5v62.4c-9.2-15.2-23.8-25.4-45-25.4s-28.8,5.7-38.7,15.5c-13.3,13.3-21.2,35.2-21.2,63.1s0,5.4.2,8c0,15.8-4.3,30.2-13.4,36.1-3.8,2.5-16.9,5.5-23.9-4.2-14.9-20.7,20.2-66.1,28-81.5,7.5-15,1.1-31.1-24.5-22.6-38.9,12.8-68.1,11.3-81,8.9-9.8-1.8-13-4.4-16.7.5-4.5,6.1-3.7,26.3,16.6,20.3,3.3-1,17-6.9,28.4-10.3,8.9-2.7,12.5,2.9,10.4,7.9-1.9,4.4-29,59.9-31.9,68.8-7.6,23.3,7.4,37.6,16.4,42,14.3,6.8,53.9,10.6,88-29.3,2.8-3.3,5.3-7.3,7.5-11.6,3.3,12,8.7,22.2,16.1,29.7,9.5,9.5,21.5,15.5,38,15.5,26.3,0,42.1-14.9,50.4-35.2v31.7h63.5c.8,1.6,1.8,3.1,3,4.7,3.4,4.2,8.1,7.7,14,10.6-1.3.3-2.7.7-4,1.1-7.8,2.5-13.8,6.3-18,11.3-4.2,5.1-6.3,11.4-6.3,18.9s2.9,14.7,8.7,20.9c5.8,6.1,14.7,11,26.5,14.6,11.9,3.6,27,5.3,45.3,5.3s41-2.8,54.5-8.3c13.5-5.5,23.2-12.6,29.1-21.4,5.9-8.7,8.9-17.9,8.9-27.3s-2.5-19.9-7.6-27.3ZM227.4,204.5c-18.4,0-24.7-15.5-24.7-45.9s6.7-49.1,24.7-49.1,26.9,20.3,26.9,47.5-8.9,47.5-26.9,47.5ZM372.2,121.6c1.6-4.5,4-7.9,7.1-10.2,3.1-2.3,6.8-3.4,11.2-3.4,6.9,0,12.1,2.8,15.5,8.4,3.4,5.6,5.2,12.7,5.2,21.4s-.8,11.9-2.4,16.3c-1.6,4.4-4,7.8-7.1,10-3.1,2.3-7,3.4-11.5,3.4-6.7,0-11.8-2.8-15.2-8.3-3.5-5.5-5.2-12.5-5.2-20.9s.8-12.3,2.4-16.8ZM419.3,283.6c-6.9,3.6-16.1,5.3-27.5,5.3s-14.7-.9-20.2-2.8c-5.5-1.8-9.7-4.4-12.5-7.8-2.8-3.3-4.2-7.3-4.2-11.8s.4-6,1.1-8.4c.7-2.2,1.6-4,2.8-5.6,1.2,0,2.3.1,3.5.1h44c7.5,0,13.3,1.5,17.3,4.4,4,2.9,6,6.5,6,10.8,0,6.9-3.5,12.1-10.4,15.7Z"/>
+  </g>
+</svg></div>
+    <div class="header-txt">
+      <h1>Escritório de Projetos</h1>
+      <p>Documentos e modelos do EGP · Instituto de Desenvolvimento e Gestão</p>
+    </div>
+    <nav class="nav">
+      <a href="#priorizacao" class="ativo">Priorização</a>
+      <a href="#execucao">Execução</a>
+      <a href="#apoio">Apoio</a>
+      <a id="navDrive" class="nav-drive" href="#" target="_blank" rel="noopener">Ver no Drive ↗</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap" id="painel"></main>
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script>
+/* ═══════════════════════════════════════════════════════════
+   EDITE AQUI — links dos documentos do EGP
+
+   tipo:  docs | slides | sheets | form | github | pendente
+   modo:  texto exibido no card sobre o que acontece ao clicar
+   ═══════════════════════════════════════════════════════════ */
+const DOCS = {
+  popEgp: {
+    nome:'POP — EGP',
+    desc:'Procedimento operacional padrão do Escritório de Projetos',
+    icone:'📋', tipo:'docs', modo:'leitura',
+    url:'https://docs.google.com/document/d/1QeYpYo2ICVmgVd7O-n4_e_AEHqMzL1aIu9hjfG2JC5g/preview'
+  },
+  manualPop: {
+    nome:'Manual POP — EGP',
+    desc:'Apresentação que explica como aplicar o POP na prática',
+    icone:'📕', tipo:'slides', modo:'leitura',
+    url:'https://docs.google.com/presentation/d/1liAeZheaKG2zM4-DYl8TP_6EtASXNJLKxfWjVY7zkAA/preview'
+  },
+  avaliacao: {
+    nome:'Avaliação de Novos Projetos',
+    desc:'Questionário para clientes na triagem de novas iniciativas',
+    icone:'📝', tipo:'form', modo:'preencher', passo:1,
+    url:'https://docs.google.com/forms/d/e/1FAIpQLSclKlTxalex02NyKSXyY5sUrIR-2uoltX1T7Ov6XTULwEaieQ/viewform'
+  },
+  matriz: {
+    nome:'Matriz de Priorização de Iniciativas',
+    desc:'Compara e ordena iniciativas por critérios de valor e esforço',
+    icone:'📊', tipo:'sheets', modo:'leitura', passo:2,
+    url:'https://docs.google.com/spreadsheets/d/1fpSMs4wRW-Vw7HbNPSSgpTjDCLHzCkj_KIHhjmeltG8/preview'
+  },
+  propostaTecnica: {
+    nome:'Proposta Técnica',
+    desc:'Documento de proposta para o cliente',
+    icone:'📄', tipo:'pendente', modo:'', passo:3,
+    url:''
+  },
+  cargos: {
+    nome:'Descrição de Cargos e Responsabilidades',
+    desc:'Define papéis e responsabilidades da equipe do projeto',
+    icone:'👥', tipo:'sheets', modo:'leitura', passo:4,
+    url:'https://docs.google.com/spreadsheets/d/1mOiYnk7FwkGxxNx1CDymOPelk-_2qoUs6Sx5QjClnxg/preview'
+  },
+  tap: {
+    nome:'TAP — Termo de Abertura de Projetos',
+    desc:'Formaliza o início do projeto, escopo, prazos e responsáveis',
+    icone:'📑', tipo:'github', modo:'leitura', passo:5,
+    url:'https://pmo-creator.github.io/maz-dashboard/TAP%20Html/TAP_Museu_das_Amazonias_v1.html'
+  },
+  eap: {
+    nome:'EAP — Estrutura Analítica do Projeto',
+    desc:'Decompõe o projeto em eixos, marcos e tarefas',
+    icone:'🌳', tipo:'github', modo:'leitura', passo:6,
+    url:'https://pmo-creator.github.io/maz-dashboard/EAP/EAP_MAZ_2026_v1.html'
+  },
+  cronograma: {
+    nome:'Cronograma',
+    desc:'Planilha de datas, responsáveis e status das entregas',
+    icone:'📅', tipo:'sheets', modo:'edicao', passo:7,
+    url:'https://docs.google.com/spreadsheets/d/17nttJ_ShqWztvDWH3l59iNqboLqkviZs3_PM5J3ihdA/edit?gid=1451384064#gid=1451384064'
+  },
+  dashboard: {
+    nome:'Dashboard',
+    desc:'Painel de acompanhamento do cronograma e das requisições',
+    icone:'📈', tipo:'github', modo:'leitura', passo:8,
+    url:'https://pmo-creator.github.io/maz-dashboard/'
+  },
+  encerramento: {
+    nome:'Termo de Encerramento de Projeto',
+    desc:'Formulário de fechamento com lições aprendidas',
+    icone:'✅', tipo:'form', modo:'preencher', passo:9,
+    url:'https://docs.google.com/forms/d/e/1FAIpQLSfCdvuDSs9wOpyRjmKQxUYeYLDMWa9iNnB7r6FQgCEnhzoFVg/viewform'
+  }
+};
+
+const PASTA_DRIVE = 'https://drive.google.com/drive/folders/1BI_90zsQ3qYxtsCK5bfD9yMsYXn5SIoO';
+
+const SECOES = [
+  {
+    id:'priorizacao', num:'1', titulo:'Priorização de Iniciativas',
+    sub:'Avaliação e seleção de novas iniciativas antes da aprovação',
+    colunas:[ {titulo:null, docs:['avaliacao','matriz','propostaTecnica']} ]
+  },
+  {
+    id:'execucao', num:'2', titulo:'Execução',
+    sub:'Documentos do ciclo de vida do projeto aprovado',
+    colunas:[
+      {titulo:null, docs:['cargos','tap','eap','cronograma','dashboard','encerramento']}
+    ]
+  }
+];
+
+
+/* ═══ Render — não precisa editar daqui para baixo ═══ */
+
+const ROTULO_TIPO = {
+  docs:'Docs', slides:'Slides', sheets:'Sheets',
+  form:'Formulário', github:'Web', pendente:'Em elaboração'
+};
+
+const NOTA_MODO = {
+  copia:'abre uma cópia para você preencher',
+  edicao:'abre o arquivo em uso pela equipe',
+  leitura:'', preencher:'', '':''
+};
+
+function escH(s){
+  return String(s).replace(/[&<>"']/g, c => (
+    {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]
+  ));
+}
+
+function cardHTML(chave){
+  const d = DOCS[chave];
+  if(!d) return '';
+  const badge = `<span class="badge ${d.tipo}">${escH(ROTULO_TIPO[d.tipo] || d.tipo)}</span>`;
+  const nota  = NOTA_MODO[d.modo] ? `<span class="card-nota">${escH(NOTA_MODO[d.modo])}</span>` : '';
+  const passo = d.passo ? `<span class="flow-badge" aria-label="Etapa ${d.passo}">${d.passo}</span>` : '';
+  const dataPasso = d.passo ? ` data-passo="${d.passo}"` : '';
+
+  const miolo = `
+      <div class="card-top"><span class="card-icone">${d.icone}</span>${badge}</div>
+      <span class="card-nome">${escH(d.nome)}</span>
+      <span class="card-desc">${escH(d.desc)}</span>
+      ${nota}`;
+
+  if(d.tipo === 'pendente' || !d.url){
+    return `<div class="card pendente"${dataPasso} data-pendente="1" tabindex="0" role="button">
+      ${passo}${miolo}
+      <span class="card-acao">Em elaboração</span>
+    </div>`;
+  }
+  return `<a class="card"${dataPasso} href="${escH(d.url)}" target="_blank" rel="noopener">
+      ${passo}${miolo}
+      <span class="card-acao">Abrir <span aria-hidden="true">→</span></span>
+    </a>`;
+}
+
+const FLOW_DIVIDER = `
+  <div class="flow-divider" role="separator" aria-label="Conclua a Priorização para avançar à Execução">
+    <span class="flow-divider-line"></span>
+    <span class="flow-divider-msg">
+      <span class="flow-divider-arrow" aria-hidden="true">↓</span>
+      Conclua a Priorização para avançar à Execução
+    </span>
+    <span class="flow-divider-line"></span>
+  </div>`;
+
+function renderPainel(){
+  const html = SECOES.map(sec => {
+    const temColunas = sec.colunas.length > 1 || sec.colunas[0].titulo;
+    const corpo = temColunas
+      ? `<div class="colunas">${sec.colunas.map(col => `
+          <div class="coluna">
+            <div class="coluna-head">${escH(col.titulo)}</div>
+            <div class="grid">${col.docs.map(cardHTML).join('')}</div>
+          </div>`).join('')}</div>`
+      : `<div class="grid">${sec.colunas[0].docs.map(cardHTML).join('')}</div>`;
+
+    const secaoHTML = `<section class="secao" id="${sec.id}">
+      <div class="secao-head">
+        <span class="secao-num">${sec.num}</span>
+        <h2>${escH(sec.titulo)}</h2>
+      </div>
+      <p class="secao-sub">${escH(sec.sub)}</p>
+      ${corpo}
+    </section>`;
+
+    return sec.id === 'priorizacao' ? secaoHTML + FLOW_DIVIDER : secaoHTML;
+  }).join('');
+
+  const apoioHTML = `<section class="secao secao-apoio" id="apoio">
+      <div class="secao-head">
+        <span class="secao-icone" aria-hidden="true">📎</span>
+        <h2>Arquivos de Apoio</h2>
+      </div>
+      <p class="secao-sub">Material de referência do Escritório de Projetos — consulte quando precisar</p>
+      <div class="grid">${['popEgp','manualPop'].map(cardHTML).join('')}</div>
+    </section>`;
+
+  document.getElementById('painel').innerHTML = html + apoioHTML + `
+    <footer>
+      <div class="footer-in">
+        <a href="${escH(PASTA_DRIVE)}" target="_blank" rel="noopener">
+          Ver todos os documentos no Drive →
+        </a>
+        <small>Escritório de Gestão de Projetos · IDG</small>
+      </div>
+    </footer>`;
+}
+
+let toastTimer = null;
+function mostrarToast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('on');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('on'), 2600);
+}
+
+document.addEventListener('click', e => {
+  if(e.target.closest('[data-pendente]')){
+    mostrarToast('Documento em elaboração — em breve disponível');
+  }
+});
+
+document.addEventListener('keydown', e => {
+  if((e.key === 'Enter' || e.key === ' ') && e.target.matches('[data-pendente]')){
+    e.preventDefault();
+    mostrarToast('Documento em elaboração — em breve disponível');
+  }
+});
+
+document.getElementById('navDrive').href = PASTA_DRIVE;
+renderPainel();
+
+const navSecoes = ['priorizacao','execucao','apoio']
+  .map(id => ({ id, link: document.querySelector(`.nav a[href="#${id}"]`), el: document.getElementById(id) }))
+  .filter(s => s.link && s.el);
+
+if(navSecoes.length){
+  const scrollSpy = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if(!entry.isIntersecting) return;
+      const alvo = navSecoes.find(s => s.el === entry.target);
+      if(!alvo) return;
+      navSecoes.forEach(s => s.link.classList.remove('ativo'));
+      alvo.link.classList.add('ativo');
+    });
+  }, { rootMargin: '-110px 0px -70% 0px', threshold: 0 });
+  navSecoes.forEach(s => scrollSpy.observe(s.el));
+}
+</script>
+</body>
+</html>
