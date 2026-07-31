@@ -22,6 +22,7 @@
   --badge-form:#7C3AED;
   --badge-github:#334155;
   --badge-pendente:#94A3B8;
+  --badge-powerbi:#CA8A04;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 body{
@@ -133,6 +134,7 @@ header{
 .badge.form{background:var(--badge-form)}
 .badge.github{background:var(--badge-github)}
 .badge.pendente{background:var(--badge-pendente)}
+.badge.powerbi{background:var(--badge-powerbi)}
 .card-nome{font-size:15px;font-weight:600;letter-spacing:-.01em}
 .card-desc{font-size:13px;color:var(--muted);flex:1 1 auto}
 .card-acao{
@@ -266,7 +268,9 @@ footer small{color:var(--muted);font-size:12px}
     </div>
     <nav class="nav">
       <a href="#priorizacao" class="ativo">Priorização</a>
+      <a href="#planejamento">Planejamento</a>
       <a href="#execucao">Execução</a>
+      <a href="#encerramento">Encerramento</a>
       <a href="#apoio">Apoio</a>
       <a id="navDrive" class="nav-drive" href="#" target="_blank" rel="noopener">Ver no Drive ↗</a>
     </nav>
@@ -288,13 +292,13 @@ const DOCS = {
     nome:'POP — EGP',
     desc:'Procedimento operacional padrão do Escritório de Projetos',
     icone:'📋', tipo:'docs', modo:'leitura',
-    url:'https://docs.google.com/document/d/1QeYpYo2ICVmgVd7O-n4_e_AEHqMzL1aIu9hjfG2JC5g/preview'
+    url:'https://docs.google.com/document/d/1QeYpYo2ICVmgVd7O-n4_e_AEHqMzL1aIu9hjfG2JC5g/edit'
   },
   manualPop: {
     nome:'Manual POP — EGP',
     desc:'Apresentação que explica como aplicar o POP na prática',
     icone:'📕', tipo:'slides', modo:'leitura',
-    url:'https://docs.google.com/presentation/d/1liAeZheaKG2zM4-DYl8TP_6EtASXNJLKxfWjVY7zkAA/preview'
+    url:'https://docs.google.com/presentation/d/1liAeZheaKG2zM4-DYl8TP_6EtASXNJLKxfWjVY7zkAA/edit'
   },
   avaliacao: {
     nome:'Avaliação de Novos Projetos',
@@ -306,7 +310,7 @@ const DOCS = {
     nome:'Matriz de Priorização de Iniciativas',
     desc:'Compara e ordena iniciativas por critérios de valor e esforço',
     icone:'📊', tipo:'sheets', modo:'leitura', passo:2,
-    url:'https://docs.google.com/spreadsheets/d/1fpSMs4wRW-Vw7HbNPSSgpTjDCLHzCkj_KIHhjmeltG8/preview'
+    url:'https://docs.google.com/spreadsheets/d/1fpSMs4wRW-Vw7HbNPSSgpTjDCLHzCkj_KIHhjmeltG8/edit'
   },
   propostaTecnica: {
     nome:'Proposta Técnica',
@@ -318,7 +322,7 @@ const DOCS = {
     nome:'Descrição de Cargos e Responsabilidades',
     desc:'Define papéis e responsabilidades da equipe do projeto',
     icone:'👥', tipo:'sheets', modo:'leitura', passo:4,
-    url:'https://docs.google.com/spreadsheets/d/1mOiYnk7FwkGxxNx1CDymOPelk-_2qoUs6Sx5QjClnxg/preview'
+    url:'https://docs.google.com/spreadsheets/d/1mOiYnk7FwkGxxNx1CDymOPelk-_2qoUs6Sx5QjClnxg/edit'
   },
   tap: {
     nome:'TAP — Termo de Abertura de Projetos',
@@ -344,10 +348,22 @@ const DOCS = {
     icone:'📈', tipo:'github', modo:'leitura', passo:8,
     url:'https://pmo-creator.github.io/maz-dashboard/'
   },
+  orcamento: {
+    nome:'Orçamento',
+    desc:'Planilha de controle orçamentário do projeto',
+    icone:'💰', tipo:'sheets', modo:'edicao', passo:9,
+    url:'https://docs.google.com/spreadsheets/d/1DkZkCu3KryfBAGlqU8lismX4vvOhV3-WYDSEVzm5ROE/edit?gid=638686800#gid=638686800'
+  },
+  dashboardOrcamento: {
+    nome:'Dashboard de Orçamento',
+    desc:'Painel Power BI de acompanhamento do orçamento do projeto',
+    icone:'💹', tipo:'powerbi', modo:'leitura', passo:10,
+    url:'https://app.powerbi.com/singleSignOn?experience=power-bi&ru=https%3A%2F%2Fapp.powerbi.com%2Fgroups%2Fme%2Freports%2F94a3c974-4100-4c84-bb92-d491a32fe0a5%2F9ac848b57dd0eb752d7e%3Fexperience%3Dpower-bi%26noSignUpCheck%3D1'
+  },
   encerramento: {
     nome:'Termo de Encerramento de Projeto',
     desc:'Formulário de fechamento com lições aprendidas',
-    icone:'✅', tipo:'form', modo:'preencher', passo:9,
+    icone:'✅', tipo:'form', modo:'preencher', passo:11,
     url:'https://docs.google.com/forms/d/e/1FAIpQLSfCdvuDSs9wOpyRjmKQxUYeYLDMWa9iNnB7r6FQgCEnhzoFVg/viewform'
   }
 };
@@ -358,14 +374,25 @@ const SECOES = [
   {
     id:'priorizacao', num:'1', titulo:'Priorização de Iniciativas',
     sub:'Avaliação e seleção de novas iniciativas antes da aprovação',
-    colunas:[ {titulo:null, docs:['avaliacao','matriz','propostaTecnica']} ]
+    colunas:[ {titulo:null, docs:['avaliacao','matriz','propostaTecnica']} ],
+    divisor:'Conclua a Priorização para avançar ao Planejamento'
   },
   {
-    id:'execucao', num:'2', titulo:'Execução',
-    sub:'Documentos do ciclo de vida do projeto aprovado',
-    colunas:[
-      {titulo:null, docs:['cargos','tap','eap','cronograma','dashboard','encerramento']}
-    ]
+    id:'planejamento', num:'2', titulo:'Planejamento',
+    sub:'Estruturação da equipe e do escopo do projeto aprovado',
+    colunas:[ {titulo:null, docs:['cargos','tap','eap']} ],
+    divisor:'Conclua o Planejamento para avançar à Execução'
+  },
+  {
+    id:'execucao', num:'3', titulo:'Execução',
+    sub:'Acompanhamento do cronograma e das entregas em andamento',
+    colunas:[ {titulo:null, docs:['cronograma','dashboard','orcamento','dashboardOrcamento']} ],
+    divisor:'Conclua a Execução para avançar ao Encerramento'
+  },
+  {
+    id:'encerramento', num:'4', titulo:'Encerramento',
+    sub:'Formalização do fechamento do projeto e lições aprendidas',
+    colunas:[ {titulo:null, docs:['encerramento']} ]
   }
 ];
 
@@ -374,7 +401,8 @@ const SECOES = [
 
 const ROTULO_TIPO = {
   docs:'Docs', slides:'Slides', sheets:'Sheets',
-  form:'Formulário', github:'Web', pendente:'Em elaboração'
+  form:'Formulário', github:'Web', pendente:'Em elaboração',
+  powerbi:'Power BI'
 };
 
 const NOTA_MODO = {
@@ -415,15 +443,17 @@ function cardHTML(chave){
     </a>`;
 }
 
-const FLOW_DIVIDER = `
-  <div class="flow-divider" role="separator" aria-label="Conclua a Priorização para avançar à Execução">
+function flowDividerHTML(msg){
+  return `
+  <div class="flow-divider" role="separator" aria-label="${escH(msg)}">
     <span class="flow-divider-line"></span>
     <span class="flow-divider-msg">
       <span class="flow-divider-arrow" aria-hidden="true">↓</span>
-      Conclua a Priorização para avançar à Execução
+      ${escH(msg)}
     </span>
     <span class="flow-divider-line"></span>
   </div>`;
+}
 
 function renderPainel(){
   const html = SECOES.map(sec => {
@@ -445,7 +475,7 @@ function renderPainel(){
       ${corpo}
     </section>`;
 
-    return sec.id === 'priorizacao' ? secaoHTML + FLOW_DIVIDER : secaoHTML;
+    return sec.divisor ? secaoHTML + flowDividerHTML(sec.divisor) : secaoHTML;
   }).join('');
 
   const apoioHTML = `<section class="secao secao-apoio" id="apoio">
@@ -493,7 +523,7 @@ document.addEventListener('keydown', e => {
 document.getElementById('navDrive').href = PASTA_DRIVE;
 renderPainel();
 
-const navSecoes = ['priorizacao','execucao','apoio']
+const navSecoes = ['priorizacao','planejamento','execucao','encerramento','apoio']
   .map(id => ({ id, link: document.querySelector(`.nav a[href="#${id}"]`), el: document.getElementById(id) }))
   .filter(s => s.link && s.el);
 
@@ -508,6 +538,14 @@ if(navSecoes.length){
     });
   }, { rootMargin: '-110px 0px -70% 0px', threshold: 0 });
   navSecoes.forEach(s => scrollSpy.observe(s.el));
+
+  const ultimoNav = navSecoes[navSecoes.length - 1];
+  window.addEventListener('scroll', () => {
+    const chegouAoFim = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
+    if(!chegouAoFim) return;
+    navSecoes.forEach(s => s.link.classList.remove('ativo'));
+    ultimoNav.link.classList.add('ativo');
+  }, { passive:true });
 }
 </script>
 </body>
