@@ -23,6 +23,7 @@
   --badge-github:#334155;
   --badge-pendente:#94A3B8;
   --badge-powerbi:#CA8A04;
+  --badge-pdf:#DC2626;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 body{
@@ -135,6 +136,7 @@ header{
 .badge.github{background:var(--badge-github)}
 .badge.pendente{background:var(--badge-pendente)}
 .badge.powerbi{background:var(--badge-powerbi)}
+.badge.pdf{background:var(--badge-pdf)}
 .card-nome{font-size:15px;font-weight:600;letter-spacing:-.01em}
 .card-desc{font-size:13px;color:var(--muted);flex:1 1 auto}
 .card-acao{
@@ -312,58 +314,70 @@ const DOCS = {
     icone:'📊', tipo:'sheets', modo:'leitura', passo:2,
     url:'https://docs.google.com/spreadsheets/d/1fpSMs4wRW-Vw7HbNPSSgpTjDCLHzCkj_KIHhjmeltG8/edit'
   },
+  parecerTecnico: {
+    nome:'Parecer Técnico',
+    desc:'Análise técnica de viabilidade da iniciativa',
+    icone:'🧾', tipo:'pdf', modo:'leitura', passo:3,
+    url:'https://drive.google.com/file/d/1spGVjSnQVUKtknqtWuwrLSvNSd_DFa1G/view?usp=sharing'
+  },
   propostaTecnica: {
     nome:'Proposta Técnica',
     desc:'Documento de proposta para o cliente',
-    icone:'📄', tipo:'pendente', modo:'', passo:3,
-    url:''
+    icone:'📄', tipo:'slides', modo:'leitura', passo:4,
+    url:'https://docs.google.com/presentation/d/1k95mlsNrAaPWqL0M_JHVIzoq4bbegYCP/edit?slide=id.p2#slide=id.p2'
   },
   cargos: {
-    nome:'Descrição de Cargos e Responsabilidades',
+    nome:'Organograma - Cargos e Responsabilidades',
     desc:'Define papéis e responsabilidades da equipe do projeto',
-    icone:'👥', tipo:'sheets', modo:'leitura', passo:4,
+    icone:'👥', tipo:'sheets', modo:'leitura', passo:5,
     url:'https://docs.google.com/spreadsheets/d/1mOiYnk7FwkGxxNx1CDymOPelk-_2qoUs6Sx5QjClnxg/edit'
   },
   tap: {
     nome:'TAP — Termo de Abertura de Projetos',
     desc:'Formaliza o início do projeto, escopo, prazos e responsáveis',
-    icone:'📑', tipo:'github', modo:'leitura', passo:5,
+    icone:'📑', tipo:'github', modo:'leitura', passo:6,
     url:'https://pmo-creator.github.io/maz-dashboard/TAP%20Html/TAP_Museu_das_Amazonias_v1.html'
   },
   eap: {
     nome:'EAP — Estrutura Analítica do Projeto',
     desc:'Decompõe o projeto em eixos, marcos e tarefas',
-    icone:'🌳', tipo:'github', modo:'leitura', passo:6,
+    icone:'🌳', tipo:'github', modo:'leitura', passo:7,
     url:'https://pmo-creator.github.io/maz-dashboard/EAP/EAP_MAZ_2026_v1.html'
   },
   cronograma: {
     nome:'Cronograma',
     desc:'Planilha de datas, responsáveis e status das entregas',
-    icone:'📅', tipo:'sheets', modo:'edicao', passo:7,
+    icone:'📅', tipo:'sheets', modo:'edicao', passo:8,
     url:'https://docs.google.com/spreadsheets/d/17nttJ_ShqWztvDWH3l59iNqboLqkviZs3_PM5J3ihdA/edit?gid=1451384064#gid=1451384064'
   },
   dashboard: {
     nome:'Dashboard',
     desc:'Painel de acompanhamento do cronograma e das requisições',
-    icone:'📈', tipo:'github', modo:'leitura', passo:8,
+    icone:'📈', tipo:'github', modo:'leitura', passo:9,
     url:'https://pmo-creator.github.io/maz-dashboard/'
   },
   orcamento: {
     nome:'Orçamento',
     desc:'Planilha de controle orçamentário do projeto',
-    icone:'💰', tipo:'sheets', modo:'edicao', passo:9,
+    icone:'💰', tipo:'sheets', modo:'edicao', passo:10,
     url:'https://docs.google.com/spreadsheets/d/1DkZkCu3KryfBAGlqU8lismX4vvOhV3-WYDSEVzm5ROE/edit?gid=638686800#gid=638686800'
   },
   dashboardOrcamento: {
     nome:'Dashboard de Orçamento',
     desc:'Painel Power BI de acompanhamento do orçamento do projeto',
-    icone:'💹', tipo:'powerbi', modo:'leitura', passo:10,
+    icone:'💹', tipo:'powerbi', modo:'leitura', passo:11,
     url:'https://app.powerbi.com/singleSignOn?experience=power-bi&ru=https%3A%2F%2Fapp.powerbi.com%2Fgroups%2Fme%2Freports%2F94a3c974-4100-4c84-bb92-d491a32fe0a5%2F9ac848b57dd0eb752d7e%3Fexperience%3Dpower-bi%26noSignUpCheck%3D1'
   },
+  requisicoes: {
+    nome:'Requisições de Compras',
+    desc:'Planilha de status das requisições de compras do projeto',
+    icone:'🛒', tipo:'sheets', modo:'edicao', passo:12,
+    url:'https://docs.google.com/spreadsheets/d/1azrdS4OGO-CWD1ods69i8iZJcwq4oyISdT2n_tu1uJM/edit?gid=807629347#gid=807629347'
+  },
   encerramento: {
-    nome:'Termo de Encerramento de Projeto',
+    nome:'TEP - Termo de Encerramento',
     desc:'Formulário de fechamento com lições aprendidas',
-    icone:'✅', tipo:'form', modo:'preencher', passo:11,
+    icone:'✅', tipo:'form', modo:'preencher', passo:13,
     url:'https://docs.google.com/forms/d/e/1FAIpQLSfCdvuDSs9wOpyRjmKQxUYeYLDMWa9iNnB7r6FQgCEnhzoFVg/viewform'
   }
 };
@@ -374,7 +388,7 @@ const SECOES = [
   {
     id:'priorizacao', num:'1', titulo:'Priorização de Iniciativas',
     sub:'Avaliação e seleção de novas iniciativas antes da aprovação',
-    colunas:[ {titulo:null, docs:['avaliacao','matriz','propostaTecnica']} ],
+    colunas:[ {titulo:null, docs:['avaliacao','matriz','parecerTecnico','propostaTecnica']} ],
     divisor:'Conclua a Priorização para avançar ao Planejamento'
   },
   {
@@ -386,7 +400,7 @@ const SECOES = [
   {
     id:'execucao', num:'3', titulo:'Execução',
     sub:'Acompanhamento do cronograma e das entregas em andamento',
-    colunas:[ {titulo:null, docs:['cronograma','dashboard','orcamento','dashboardOrcamento']} ],
+    colunas:[ {titulo:null, docs:['cronograma','dashboard','orcamento','dashboardOrcamento','requisicoes']} ],
     divisor:'Conclua a Execução para avançar ao Encerramento'
   },
   {
@@ -402,7 +416,7 @@ const SECOES = [
 const ROTULO_TIPO = {
   docs:'Docs', slides:'Slides', sheets:'Sheets',
   form:'Formulário', github:'Web', pendente:'Em elaboração',
-  powerbi:'Power BI'
+  powerbi:'Power BI', pdf:'PDF'
 };
 
 const NOTA_MODO = {
