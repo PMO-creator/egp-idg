@@ -344,34 +344,40 @@ const DOCS = {
     icone:'🌳', tipo:'github', modo:'leitura', passo:7,
     url:'https://pmo-creator.github.io/maz-dashboard/EAP/EAP_MAZ_2026_v1.html'
   },
+  governanca: {
+    nome:'Modelo de Governança',
+    desc:'Define a estrutura de governança do projeto',
+    icone:'🏛️', tipo:'slides', modo:'leitura', passo:8,
+    url:'https://docs.google.com/presentation/d/14m-H_s2I6azGwfkdmBIYUizW5aUL9IgKtKRXfK7Nd5o/edit'
+  },
   cronograma: {
     nome:'Cronograma',
     desc:'Planilha de datas, responsáveis e status das entregas',
-    icone:'📅', tipo:'sheets', modo:'edicao', passo:8,
+    icone:'📅', tipo:'sheets', modo:'edicao', passo:9,
     url:'https://docs.google.com/spreadsheets/d/17nttJ_ShqWztvDWH3l59iNqboLqkviZs3_PM5J3ihdA/edit?gid=1451384064#gid=1451384064'
   },
   dashboard: {
-    nome:'Dashboard',
+    nome:'Dashboard de Acompanhamento',
     desc:'Painel de acompanhamento do cronograma e das requisições',
-    icone:'📈', tipo:'github', modo:'leitura', passo:9,
+    icone:'📈', tipo:'github', modo:'leitura', passo:10,
     url:'https://pmo-creator.github.io/maz-dashboard/'
   },
   orcamento: {
     nome:'Orçamento',
     desc:'Planilha de controle orçamentário do projeto',
-    icone:'💰', tipo:'sheets', modo:'edicao', passo:10,
+    icone:'💰', tipo:'sheets', modo:'edicao', passo:11,
     url:'https://docs.google.com/spreadsheets/d/1DkZkCu3KryfBAGlqU8lismX4vvOhV3-WYDSEVzm5ROE/edit?gid=638686800#gid=638686800'
   },
   dashboardOrcamento: {
     nome:'Dashboard de Orçamento',
     desc:'Painel Power BI de acompanhamento do orçamento do projeto',
-    icone:'💹', tipo:'powerbi', modo:'leitura', passo:11,
+    icone:'💹', tipo:'powerbi', modo:'leitura', passo:12,
     url:'https://app.powerbi.com/singleSignOn?experience=power-bi&ru=https%3A%2F%2Fapp.powerbi.com%2Fgroups%2Fme%2Freports%2F94a3c974-4100-4c84-bb92-d491a32fe0a5%2F9ac848b57dd0eb752d7e%3Fexperience%3Dpower-bi%26noSignUpCheck%3D1'
   },
   requisicoes: {
     nome:'Requisições de Compras',
     desc:'Planilha de status das requisições de compras do projeto',
-    icone:'🛒', tipo:'sheets', modo:'edicao', passo:12,
+    icone:'🛒', tipo:'sheets', modo:'edicao',
     url:'https://docs.google.com/spreadsheets/d/1azrdS4OGO-CWD1ods69i8iZJcwq4oyISdT2n_tu1uJM/edit?gid=807629347#gid=807629347'
   },
   encerramento: {
@@ -394,13 +400,13 @@ const SECOES = [
   {
     id:'planejamento', num:'2', titulo:'Planejamento',
     sub:'Estruturação da equipe e do escopo do projeto aprovado',
-    colunas:[ {titulo:null, docs:['cargos','tap','eap']} ],
+    colunas:[ {titulo:null, docs:['cargos','tap','eap','governanca']} ],
     divisor:'Conclua o Planejamento para avançar à Execução'
   },
   {
-    id:'execucao', num:'3', titulo:'Execução',
+    id:'execucao', num:'3', titulo:'Execução - Cronograma Físico-Financeiro',
     sub:'Acompanhamento do cronograma e das entregas em andamento',
-    colunas:[ {titulo:null, docs:['cronograma','dashboard','orcamento','dashboardOrcamento','requisicoes']} ],
+    colunas:[ {titulo:null, docs:['cronograma','dashboard','orcamento','dashboardOrcamento']} ],
     divisor:'Conclua a Execução para avançar ao Encerramento'
   },
   {
@@ -498,7 +504,7 @@ function renderPainel(){
         <h2>Arquivos de Apoio</h2>
       </div>
       <p class="secao-sub">Material de referência do Escritório de Projetos — consulte quando precisar</p>
-      <div class="grid">${['popEgp','manualPop'].map(cardHTML).join('')}</div>
+      <div class="grid">${['popEgp','manualPop','requisicoes'].map(cardHTML).join('')}</div>
     </section>`;
 
   document.getElementById('painel').innerHTML = html + apoioHTML + `
